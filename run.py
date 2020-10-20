@@ -2,6 +2,9 @@ import os
 # os is from the python standard library. 
 # to add some extra functionality that Flask does not contain
 
+# import json because we will use json to get data from the file data/company.json
+import json
+
 from flask import Flask, render_template
 # the capital letter 
 # indicate that Flask is a class
@@ -23,17 +26,33 @@ def index(): # index view
 # end of index view
 
 @app.route("/about")
-def about():# about view
-    return render_template("about.html")
+def about():  # about view
+    # piece of code that is meant to work with Json
+    data = []
+    with open("data/company.json", "r") as json_data:
+    #json_data is how we are going to refer to "data/company.json"
+        data = json.load(json_data) 
+    # end of piece of code for json
+    return render_template("about.html", page_title="About", list_of_numbers=[1,2,3,4], company=data)
 
+@app.route("/about/<member_name>")
+def about_member(member_name):
+    member = {}
+
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+        for obj in data:
+            if obj['url'] == member_name:
+                member = obj
+    return render_template("member.html", member=member)
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact")
 
 @app.route("/career")
 def career():
-    return render_template("career.html")
+    return render_template("career.html", page_title="Career")
     
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
