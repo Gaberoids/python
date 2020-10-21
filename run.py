@@ -48,7 +48,7 @@ def about():  # about view
         # going to refer to "data/company.json"
         data = json.load(json_data)
     # end of piece of code for json
-    return render_template("about.html", page_title="About", list_of_numbers=[1, 2, 3, 4], company=data)
+    return render_template("about.html", page_title="About", company=data)
 
 
 @app.route("/about/<member_name>")
