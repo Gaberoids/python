@@ -2,6 +2,10 @@ import os
 # os is from the python standard library.
 # to add some extra functionality that Flask does not contain
 
+os.environ.setdefault("secret_key", "some_secret")
+# This may go under import statements
+# enter the this data on the Key config in heroku
+
 # json to get data from the
 # file data/company.json
 import json
@@ -21,10 +25,7 @@ from flask import Flask, render_template, request, flash
 app = Flask(__name__)
 # app.secret_key = "some_secret"
 # I think this is the unsafe way to place the secret key
-#  the other way to show the secret key below.
-os.environ.setdefault("secret_key", "some_secret")
-# This may go under import statements
-# enter the this data on the Key config in heroku
+#  the other way to show the secret key blow import line on top.
 
 
 
