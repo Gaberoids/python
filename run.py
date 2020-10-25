@@ -19,7 +19,14 @@ from flask import Flask, render_template, request, flash
 # __name__ is a built in variable from
 #  python used when there is only one module/app/appname
 app = Flask(__name__)
-app.secret_key = "some_secret"
+# app.secret_key = "some_secret"
+# I think this is the unsafe way to place the secret key
+#  the other way to show the secret key below.
+os.environ.setdefault("secret_key", "some_secret")
+# This may go under import statements
+# enter the this data on the Key config in heroku
+
+
 
 # we use the route decorator
 # A decorator is a way
