@@ -2,7 +2,7 @@ import os
 # os is from the python standard library.
 # to add some extra functionality that Flask does not contain
 
-os.environ.setdefault("secret_key", "some_secret")
+# os.environ.setdefault("secret_key", "some_secret")???
 # This may go under import statements
 # enter the this data on the Key config in heroku
 
@@ -23,8 +23,8 @@ from flask import Flask, render_template, request, flash
 # __name__ is a built in variable from
 #  python used when there is only one module/app/appname
 app = Flask(__name__)
-# app.secret_key = "some_secret"
-# I think this is the unsafe way to place the secret key
+app.secret_key = "some_secret"
+# ??? I think this is the unsafe way to place the secret key
 #  the other way to show the secret key blow import line on top.
 
 
